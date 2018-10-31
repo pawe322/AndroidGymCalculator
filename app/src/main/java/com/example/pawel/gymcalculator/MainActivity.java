@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity
 
     SeekBar seekbar1, seekbar2;
     TextView textView1, textView2, RM1, RM5, RM6, RM8, RM10, RM12;
-    int progress1, progress2 = 0;
+    int progress1 = 0;
+    int progress2 = 0;
     int textsize = 30;
     double ciezar;
     int powt;
@@ -115,15 +116,22 @@ public class MainActivity extends AppCompatActivity
 
     //method that counts the load on the bar
     private void licz() {
+        long ciezarNa1;
         ciezar=seekbar1.getProgress()+1;
         powt=seekbar2.getProgress()+1;
-        ciezar=Math.round(ciezar / (dziel[powt - 1]) * 100) / 100;
-        RM1.setText(String.valueOf((int)ciezar) + " kg");
-        RM5.setText(String.valueOf(Math.round(ciezar * (dziel[4]) * 100) / 100) + " kg");
-        RM6.setText(String.valueOf(Math.round(ciezar * (dziel[5]) * 100) / 100) + " kg");
-        RM8.setText(String.valueOf(Math.round(ciezar * (dziel[7]) * 100) / 100) + " kg");
-        RM10.setText(String.valueOf(Math.round(ciezar * (dziel[9]) * 100) / 100) + " kg");
-        RM12.setText(String.valueOf(Math.round(ciezar * (dziel[11]) * 100) / 100) + " kg");
+        ciezarNa1=Math.round(ciezar / (dziel[powt - 1]) * 100) / 100;
+
+        RM1.setText(String.valueOf((int)ciezarNa1) + " kg");
+        if(powt == 5)RM5.setText(String.valueOf((int)ciezar) + " kg");
+            else RM5.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[4]) * 100) / 100) + " kg");
+        if(powt == 6)RM6.setText(String.valueOf((int)ciezar) + " kg");
+            else RM6.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[5]) * 100) / 100) + " kg");
+        if(powt == 8)RM8.setText(String.valueOf((int)ciezar) + " kg");
+            else RM8.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[7]) * 100) / 100) + " kg");
+        if(powt == 10)RM10.setText(String.valueOf((int)ciezar) + " kg");
+            else RM10.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[9]) * 100) / 100) + " kg");
+        if(powt == 12)RM12.setText(String.valueOf((int)ciezar) + " kg");
+            else RM12.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[11]) * 100) / 100) + " kg");
     }
 
     @Override

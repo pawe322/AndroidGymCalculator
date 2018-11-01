@@ -12,16 +12,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    Button buttonPW, buttonMW;
     SeekBar seekbar1, seekbar2;
     TextView textView1, textView2, RM1, RM5, RM6, RM8, RM10, RM12;
-    int progress1 = 0;
-    int progress2 = 0;
+    int progress1 = 1;
+    int progress2 = 1;
     int textsize = 30;
     double ciezar;
     int powt;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         seekbar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                progress1 = i;
+                progress1=i;
                 textView1.setText(progress1+1+" kg");
 
                 licz();
@@ -78,7 +79,6 @@ public class MainActivity extends AppCompatActivity
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 progress2 = i;
                 textView2.setText(progress2+1+" reps");
-
                 licz();
             }
             @Override
@@ -88,21 +88,35 @@ public class MainActivity extends AppCompatActivity
             public void onStopTrackingTouch (SeekBar seekBar){}
         });
 
+        // buttons
+        buttonPW = findViewById(R.id.buttonPlusWeight);
+        buttonMW = findViewById(R.id.buttonMinusWeight);
 
+        buttonPW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(progress1>299) {}
+                    else progress1+= 1;
+                seekbar1.setProgress(progress1);
+                textView1.setText(progress1+1+" kg");
+                licz();
+            }
+        });
 
+        buttonMW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(progress1<2) {}
+                    else progress1-= 1;
+                seekbar1.setProgress(progress1);
+                textView1.setText(progress1+1+" kg");
+                licz();
+            }
+        });
 
         // Toolbar stuff
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Paweł Rządzi!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -159,9 +173,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }

@@ -13,20 +13,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    Button buttonPW, buttonMW;
-    SeekBar seekbar1, seekbar2;
-    TextView textView1, textView2, RM1, RM5, RM6, RM8, RM10, RM12;
+    TextView RM1,RM5,RM6,RM8,RM10,RM12;
+    SeekBar seekbar1,seekbar2;
     int progress1 = 1;
     int progress2 = 1;
     int textsize = 30;
     double ciezar;
     int powt;
     double[] dziel = new double[] {1, 0.943, 0.906, 0.881, 0.856, 0.831, 0.807, 0.786, 0.765, 0.744, 0.723, 0.703};
+    String unit = " kg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +40,15 @@ public class MainActivity extends AppCompatActivity
         seekbar1.setMax(299);
         seekbar1.setProgress(progress1);
 
-        textView1 = findViewById(R.id.textView1);
+        final TextView textView1 = findViewById(R.id.textView1);
         textView1.setTextSize(textsize);
-        textView1.setText(progress1+" kg");
+        textView1.setText(progress1+unit);
 
         seekbar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 progress1=i;
-                textView1.setText(progress1+1+" kg");
+                textView1.setText(progress1+1+unit);
 
                 licz();
             }
@@ -62,11 +64,9 @@ public class MainActivity extends AppCompatActivity
         seekbar2 = findViewById(R.id.seekBar2);
         seekbar2.setMax(11);
         seekbar2.setProgress(progress2);
-
-        textView2 = findViewById(R.id.textView2);
+        final TextView textView2 = findViewById(R.id.textView2);
         textView2.setTextSize(textsize);
         textView2.setText(progress2+" reps");
-
         RM1 = findViewById(R.id.RM1);
         RM5 = findViewById(R.id.RM5);
         RM6 = findViewById(R.id.RM6);
@@ -89,16 +89,16 @@ public class MainActivity extends AppCompatActivity
         });
 
         // buttons
-        buttonPW = findViewById(R.id.buttonPlusWeight);
-        buttonMW = findViewById(R.id.buttonMinusWeight);
+        Button buttonPW = findViewById(R.id.buttonPlusWeight);
+        Button buttonMW = findViewById(R.id.buttonMinusWeight);
 
         buttonPW.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(progress1>299) {}
+                if(progress1>seekbar1.getMax()-1) {}
                     else progress1+= 1;
                 seekbar1.setProgress(progress1);
-                textView1.setText(progress1+1+" kg");
+                textView1.setText(progress1+1+unit);
                 licz();
             }
         });
@@ -106,10 +106,10 @@ public class MainActivity extends AppCompatActivity
         buttonMW.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(progress1<2) {}
+                if(progress1<1) {}
                     else progress1-= 1;
                 seekbar1.setProgress(progress1);
-                textView1.setText(progress1+1+" kg");
+                textView1.setText(progress1+1+unit);
                 licz();
             }
         });
@@ -129,23 +129,23 @@ public class MainActivity extends AppCompatActivity
     }
 
     //method that counts the load on the bar
-    private void licz() {
+     private void licz() {
         long ciezarNa1;
         ciezar=seekbar1.getProgress()+1;
         powt=seekbar2.getProgress()+1;
         ciezarNa1=Math.round(ciezar / (dziel[powt - 1]) * 100) / 100;
 
-        RM1.setText(String.valueOf((int)ciezarNa1) + " kg");
-        if(powt == 5)RM5.setText(String.valueOf((int)ciezar) + " kg");
-            else RM5.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[4]) * 100) / 100) + " kg");
-        if(powt == 6)RM6.setText(String.valueOf((int)ciezar) + " kg");
-            else RM6.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[5]) * 100) / 100) + " kg");
-        if(powt == 8)RM8.setText(String.valueOf((int)ciezar) + " kg");
-            else RM8.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[7]) * 100) / 100) + " kg");
-        if(powt == 10)RM10.setText(String.valueOf((int)ciezar) + " kg");
-            else RM10.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[9]) * 100) / 100) + " kg");
-        if(powt == 12)RM12.setText(String.valueOf((int)ciezar) + " kg");
-            else RM12.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[11]) * 100) / 100) + " kg");
+        RM1.setText(String.valueOf((int)ciezarNa1) + unit);
+        if(powt == 5)RM5.setText(String.valueOf((int)ciezar) + unit);
+            else RM5.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[4]) * 100) / 100) + unit);
+        if(powt == 6)RM6.setText(String.valueOf((int)ciezar) + unit);
+            else RM6.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[5]) * 100) / 100) + unit);
+        if(powt == 8)RM8.setText(String.valueOf((int)ciezar) + unit);
+            else RM8.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[7]) * 100) / 100) + unit);
+        if(powt == 10)RM10.setText(String.valueOf((int)ciezar) + unit);
+            else RM10.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[9]) * 100) / 100) + unit);
+        if(powt == 12)RM12.setText(String.valueOf((int)ciezar) + unit);
+            else RM12.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[11]) * 100) / 100) + unit);
     }
 
     @Override
@@ -172,28 +172,24 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        /*if (id == R.id.action_settings) {
-            return true;
-        }*/
-
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.MetricsUnit) {
+            unit=" kg";
+            seekbar1.setMax(299);
+            licz();
+        } else if (id == R.id.ImperialUnit) {
+            unit=" lbs";
+            seekbar1.setMax(599);
+            licz();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

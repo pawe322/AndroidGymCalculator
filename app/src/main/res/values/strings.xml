@@ -5,10 +5,6 @@
     <string name="nav_header_title">GymCalculator</string>
     <string name="nav_header_subtitle">pawe322Dev@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-    <string name="score">Score</string>
-    <string name="reps">Reps</string>
-    <string name="weight">Weight</string>
     <string name="RM1">1RM</string>
     <string name="RM5">5RM</string>
     <string name="RM6">6RM</string>

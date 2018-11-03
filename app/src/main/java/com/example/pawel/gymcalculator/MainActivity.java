@@ -1,8 +1,6 @@
 package com.example.pawel.gymcalculator;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,10 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.SeekBar;
-import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -178,22 +175,33 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-
+        ciezar=seekbar1.getProgress()+1;
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.MetricsUnit) {
             unit=" kg";
             seekbar1.setMax(299);
+            seekbar1.setProgress((int) (ciezar/2.205));
             licz();
         } else if (id == R.id.ImperialUnit) {
             unit=" lbs";
             seekbar1.setMax(599);
+            seekbar1.setProgress((int) (ciezar*2.205));
             licz();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        GMailSender sender = new GMailSender("pawe322Dev@gmail.com", "Kolka123");
+                        sender.sendMail("Test mail", "Mejl z apki GymCalculator", "pawe322Dev@gmail.com", "pawe322Dev@gmail.com");
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
+                    }
+                }
+            }).start();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,6 +1,11 @@
 package com.example.pawel.gymcalculator;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,9 +16,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,20 +36,24 @@ public class MainActivity extends AppCompatActivity
     double[] dziel = new double[] {1, 0.943, 0.906, 0.881, 0.856, 0.831, 0.807, 0.786, 0.765, 0.744, 0.723, 0.703};
     String unit = " kg";
 
+    private Tracker mTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // textView + seekbar from weight
+        // analitycs part
+        AnalyticsApplication application = (AnalyticsApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+
+        // textView + seekbar from WEIGHT
         seekbar1 = findViewById(R.id.seekBar1);
         seekbar1.setMax(299);
         seekbar1.setProgress(progress1);
-
         final TextView textView1 = findViewById(R.id.textView1);
         textView1.setTextSize(textsize);
         textView1.setText(progress1+unit);
-
         seekbar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -49,15 +62,13 @@ public class MainActivity extends AppCompatActivity
 
                 licz();
             }
-
             @Override
             public void onStartTrackingTouch (SeekBar seekBar){}
-
             @Override
             public void onStopTrackingTouch (SeekBar seekBar){}
         });
 
-        // textView + seekbar from reps
+        // textView + seekbar from REPS
         seekbar2 = findViewById(R.id.seekBar2);
         seekbar2.setMax(11);
         seekbar2.setProgress(progress2);
@@ -80,15 +91,12 @@ public class MainActivity extends AppCompatActivity
             }
             @Override
             public void onStartTrackingTouch (SeekBar seekBar){}
-
             @Override
             public void onStopTrackingTouch (SeekBar seekBar){}
         });
 
         // buttons
         Button buttonPW = findViewById(R.id.buttonPlusWeight);
-        Button buttonMW = findViewById(R.id.buttonMinusWeight);
-
         buttonPW.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +107,7 @@ public class MainActivity extends AppCompatActivity
                 licz();
             }
         });
-
+        Button buttonMW = findViewById(R.id.buttonMinusWeight);
         buttonMW.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,26 +131,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
-
-    //method that counts the load on the bar
-     private void licz() {
-        long ciezarNa1;
-        ciezar=seekbar1.getProgress()+1;
-        powt=seekbar2.getProgress()+1;
-        ciezarNa1=Math.round(ciezar / (dziel[powt - 1]) * 100) / 100;
-
-        RM1.setText(String.valueOf((int)ciezarNa1) + unit);
-        if(powt == 5)RM5.setText(String.valueOf((int)ciezar) + unit);
-            else RM5.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[4]) * 100) / 100) + unit);
-        if(powt == 6)RM6.setText(String.valueOf((int)ciezar) + unit);
-            else RM6.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[5]) * 100) / 100) + unit);
-        if(powt == 8)RM8.setText(String.valueOf((int)ciezar) + unit);
-            else RM8.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[7]) * 100) / 100) + unit);
-        if(powt == 10)RM10.setText(String.valueOf((int)ciezar) + unit);
-            else RM10.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[9]) * 100) / 100) + unit);
-        if(powt == 12)RM12.setText(String.valueOf((int)ciezar) + unit);
-            else RM12.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[11]) * 100) / 100) + unit);
     }
 
     @Override
@@ -180,32 +168,112 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.MetricsUnit) {
+            SetMenuTracker("Action","Metrics Unit");
             unit=" kg";
             seekbar1.setMax(299);
             seekbar1.setProgress((int) (ciezar/2.205));
             licz();
         } else if (id == R.id.ImperialUnit) {
+            SetMenuTracker("Action","Imperial Unit");
             unit=" lbs";
             seekbar1.setMax(599);
             seekbar1.setProgress((int) (ciezar*2.205));
             licz();
         } else if (id == R.id.nav_share) {
-
+            SetMenuTracker("Action","Share");
+            ShareApp();
         } else if (id == R.id.nav_send) {
-            new Thread(new Runnable() {
-                public void run() {
-                    try {
-                        GMailSender sender = new GMailSender("pawe322Dev@gmail.com", "Kolka123");
-                        sender.sendMail("Test mail", "Mejl z apki GymCalculator", "pawe322Dev@gmail.com", "pawe322Dev@gmail.com");
-                    } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
-                    }
-                }
-            }).start();
+            SetMenuTracker("Action","Feedback");
+            CreateDialogFeedbackView();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private void SetMenuTracker(String Category, String Action) {
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory(Category)
+                .setAction(Action)
+                .build());
+    }
+
+    private void ShareApp() {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "Have a precise measurements!";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "GymCalculator");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
+    //method that counts the load on the bar
+    private void licz() {
+        long ciezarNa1;
+        ciezar=seekbar1.getProgress()+1;
+        powt=seekbar2.getProgress()+1;
+        ciezarNa1=Math.round(ciezar / (dziel[powt - 1]) * 100) / 100;
+
+        RM1.setText(String.valueOf((int)ciezarNa1) + unit);
+        if(powt == 5)RM5.setText(String.valueOf((int)ciezar) + unit);
+        else RM5.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[4]) * 100) / 100) + unit);
+        if(powt == 6)RM6.setText(String.valueOf((int)ciezar) + unit);
+        else RM6.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[5]) * 100) / 100) + unit);
+        if(powt == 8)RM8.setText(String.valueOf((int)ciezar) + unit);
+        else RM8.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[7]) * 100) / 100) + unit);
+        if(powt == 10)RM10.setText(String.valueOf((int)ciezar) + unit);
+        else RM10.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[9]) * 100) / 100) + unit);
+        if(powt == 12)RM12.setText(String.valueOf((int)ciezar) + unit);
+        else RM12.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[11]) * 100) / 100) + unit);
+    }
+
+    private void CreateDialogFeedbackView() {
+        final Context context = this;
+        LayoutInflater li = LayoutInflater.from(context);
+        View promptsView = li.inflate(R.layout.dialog_feedback, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        alertDialogBuilder.setView(promptsView);
+        final EditText userInput = (EditText) promptsView.findViewById(R.id.FeedbackMessageText);
+        // set dialog message
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                if(!userInput.getText().toString().matches("")){
+                                    sendFeedbackMessage(userInput.getText().toString());
+                                    Toast.makeText(getApplicationContext(),"Successfully sent message",Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(),"Message not sent ",Toast.LENGTH_SHORT).show();
+                                }
+                                dialog.cancel();
+
+                            }
+                        })
+                .setNegativeButton("Give me time",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                                Toast.makeText(getApplicationContext(),"Message not sent ",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        // show it
+        alertDialog.show();
+    }
+
+    private void sendFeedbackMessage(String TextMessage) {
+        final String textMessage = TextMessage;
+        Thread sender = new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        GMailSender sender = new GMailSender("pawe322Feedback@gmail.com", "czxt*7^JhB&Px&_&");
+                        sender.sendMail("[Feedback] GymCalculator", ""+textMessage, "pawe322Feedback@gmail.com", "pawe322Dev@gmail.com");
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+            sender.start();
     }
 }

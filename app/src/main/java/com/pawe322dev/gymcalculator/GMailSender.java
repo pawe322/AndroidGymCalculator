@@ -1,4 +1,4 @@
-package com.example.pawel.gymcalculator;
+package com.pawe322dev.gymcalculator;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -27,7 +27,7 @@ public class GMailSender extends javax.mail.Authenticator {
     private Session session;
     private Multipart _multipart = new MimeMultipart();
     static {
-        Security.addProvider(new com.example.pawel.gymcalculator.JSSEProvider());
+        Security.addProvider(new JSSEProvider());
     }
 
     public GMailSender(String user, String password) {

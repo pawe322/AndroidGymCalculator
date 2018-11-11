@@ -1,4 +1,4 @@
-package com.example.pawel.gymcalculator;
+package com.pawe322dev.gymcalculator;
 
 import android.content.Context;
 import android.content.DialogInterface;

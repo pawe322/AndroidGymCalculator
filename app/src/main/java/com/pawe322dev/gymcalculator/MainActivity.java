@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity
     private void ShareApp() {
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        String shareBody = "Have a precise measurements!";
+        String shareBody = "Have a precise measurements! https://play.google.com/store/apps/details?id=com.pawe322dev.gymcalculator";
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "GymCalculator");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));

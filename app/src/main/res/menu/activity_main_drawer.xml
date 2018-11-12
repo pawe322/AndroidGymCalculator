@@ -4,30 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-        <item android:title="Units">
+        <item android:title="@string/Units">
             <menu>
                 <item
                     android:id="@+id/MetricsUnit"
                     android:icon="@drawable/kgpicture"
-                    android:title="Metrics" />
+                    android:title="@string/Metrics" />
                 <item
                     android:id="@+id/ImperialUnit"
                     android:icon="@drawable/lbspicture"
-                    android:title="Imperial" />
+                    android:title="@string/Imperial" />
+                <item
+                    android:id="@+id/Round"
+                    android:icon="@drawable/round"
+                    android:title="@string/Round" />
             </menu>
         </item>
 
-    <item android:title="Communicate">
+    <item android:title="@string/Communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:checkable="false"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/Share" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send feedback" />
+                android:title="@string/Send_feedback" />
         </menu>
     </item>
 

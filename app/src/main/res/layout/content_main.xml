@@ -8,59 +8,38 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <Button
-        android:id="@+id/buttonPlusWeight"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_above="@+id/textView2"
-        android:layout_marginEnd="-265dp"
-        android:layout_marginRight="-265dp"
-        android:layout_marginBottom="-8dp"
-        android:layout_toStartOf="@+id/seekBar1"
-        android:layout_toLeftOf="@+id/seekBar1"
-        android:text="+1"
-        android:textSize="29sp" />
-
     <TextView
-        android:id="@+id/RM8string"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/RM5string"
-        android:layout_below="@+id/RM6string"
-        android:text="@string/RM8"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM12string"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/RM8string"
-        android:layout_below="@+id/RM10string"
-        android:text="@string/RM12"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM10string"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/RM8string"
-        android:layout_below="@+id/RM8string"
-        android:text="@string/RM10"
-        android:textSize="24sp" />
+        android:id="@+id/textView1"
+        android:layout_width="104dp"
+        android:layout_height="44dp"
+        android:layout_alignRight="@+id/RM1"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="26dp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="104dp"
         android:layout_height="44dp"
         android:layout_below="@+id/seekBar1"
-        android:layout_alignEnd="@+id/RM1"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/RM1"
         android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/RM1string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="43dp"
+        android:text="@string/RM1"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/RM5string"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/RM1string"
+        android:layout_alignLeft="@+id/RM1string"
         android:layout_below="@+id/RM1string"
         android:text="@string/RM5"
         android:textSize="24sp" />
@@ -69,75 +48,103 @@
         android:id="@+id/RM6string"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/RM5string"
+        android:layout_alignLeft="@+id/RM5string"
         android:layout_below="@+id/RM5string"
         android:text="@string/RM6"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/RM1string"
+        android:id="@+id/RM8string"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="43dp"
-        android:text="@string/RM1"
+        android:layout_alignLeft="@+id/RM6string"
+        android:layout_below="@+id/RM6string"
+        android:text="@string/RM8"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/RM10string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/RM8string"
+        android:layout_below="@+id/RM8string"
+        android:text="@string/RM10"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/RM12string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/RM10string"
+        android:layout_below="@+id/RM10string"
+        android:text="@string/RM12"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/RM15string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/RM12string"
+        android:layout_below="@+id/RM12string"
+        android:text="@string/RM15"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/RM1"
-        android:layout_width="87dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/RM5"
-        android:layout_width="87dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/RM5string"
+        android:layout_below="@+id/RM1"
         android:layout_centerHorizontal="true"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/RM6"
-        android:layout_width="87dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/RM8string"
+        android:layout_below="@+id/RM5"
         android:layout_centerHorizontal="true"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/RM8"
-        android:layout_width="87dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/RM8string"
+        android:layout_below="@+id/RM6"
         android:layout_centerHorizontal="true"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/RM10"
-        android:layout_width="87dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/RM8string"
+        android:layout_below="@+id/RM8"
         android:layout_centerHorizontal="true"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/RM12"
-        android:layout_width="87dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/RM12string"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/RM10"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_marginTop="0dp"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="100dp"
-        android:layout_height="44dp"
-        android:layout_alignEnd="@+id/RM1"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="26dp" />
+        android:id="@+id/RM15"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RM12"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp" />
 
     <SeekBar
         android:id="@+id/seekBar2"
@@ -166,6 +173,19 @@
         android:layout_toStartOf="@+id/seekBar1"
         android:layout_toLeftOf="@+id/seekBar1"
         android:text="-1"
+        android:textSize="29sp" />
+
+    <Button
+        android:id="@+id/buttonPlusWeight"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/textView2"
+        android:layout_marginEnd="-265dp"
+        android:layout_marginRight="-265dp"
+        android:layout_marginBottom="-8dp"
+        android:layout_toStartOf="@+id/seekBar1"
+        android:layout_toLeftOf="@+id/seekBar1"
+        android:text="+1"
         android:textSize="29sp" />
 
     <com.google.android.gms.ads.AdView

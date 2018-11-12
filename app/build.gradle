@@ -6,8 +6,8 @@ android {
         applicationId "com.pawe322dev.gymcalculator"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 3
-        versionName "1.1"
+        versionCode 4
+        versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -32,6 +32,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-ads:15.0.0'
     implementation 'com.android.support:customtabs:27.1.1'
     implementation 'com.google.android.gms:play-services-measurement-base:15.0.0'
-    //implementation 'com.google.android.gms:play-services-measurement-api:16.0.0'
 }
 apply plugin: 'com.google.gms.google-services'

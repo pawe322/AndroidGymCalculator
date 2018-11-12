@@ -10,14 +10,14 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send Feedback!"
+        android:text="@string/Send_feedback"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Want to report a bug or have a suggestion? Tell me:"
+        android:text="@string/Feedback_msg"
         android:textSize="16sp" />
 
     <EditText

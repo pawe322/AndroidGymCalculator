@@ -27,18 +27,21 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import java.text.DecimalFormat;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    TextView RM1,RM5,RM6,RM8,RM10,RM12;
+    TextView RM1,RM5,RM6,RM8,RM10,RM12, RM15;
     SeekBar seekbar1,seekbar2;
     int progress1 = 1;
     int progress2 = 1;
     int textsize = 30;
     double ciezar;
     int powt;
-    double[] dziel = new double[] {1, 0.943, 0.906, 0.881, 0.856, 0.831, 0.807, 0.786, 0.765, 0.744, 0.723, 0.703};
+    double[] dziel = new double[] {1, 0.943, 0.906, 0.881, 0.856, 0.831, 0.807, 0.786, 0.765, 0.744, 0.723, 0.703, 0.688, 0.675, 0.662};
     String unit = " kg";
+    boolean isRound = false;
 
     private Tracker mTracker;
     private static final String TAG = "MainActivity";
@@ -71,8 +74,7 @@ public class MainActivity extends AppCompatActivity
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 progress1=i;
                 textView1.setText(progress1+1+unit);
-
-                licz();
+                licz(isRound);
             }
             @Override
             public void onStartTrackingTouch (SeekBar seekBar){}
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity
 
         // textView + seekbar from REPS
         seekbar2 = findViewById(R.id.seekBar2);
-        seekbar2.setMax(11);
+        seekbar2.setMax(14);
         seekbar2.setProgress(progress2);
         final TextView textView2 = findViewById(R.id.textView2);
         textView2.setTextSize(textsize);
@@ -93,13 +95,14 @@ public class MainActivity extends AppCompatActivity
         RM8 = findViewById(R.id.RM8);
         RM10 = findViewById(R.id.RM10);
         RM12 = findViewById(R.id.RM12);
+        RM15 = findViewById(R.id.RM15);
 
         seekbar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 progress2 = i;
                 textView2.setText(progress2+1+" reps");
-                licz();
+                licz(isRound);
             }
             @Override
             public void onStartTrackingTouch (SeekBar seekBar){}
@@ -116,7 +119,7 @@ public class MainActivity extends AppCompatActivity
                     else progress1+= 1;
                 seekbar1.setProgress(progress1);
                 textView1.setText(progress1+1+unit);
-                licz();
+                licz(isRound);
             }
         });
         Button buttonMW = findViewById(R.id.buttonMinusWeight);
@@ -127,7 +130,7 @@ public class MainActivity extends AppCompatActivity
                     else progress1-= 1;
                 seekbar1.setProgress(progress1);
                 textView1.setText(progress1+1+unit);
-                licz();
+                licz(isRound);
             }
         });
 
@@ -175,7 +178,6 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -185,19 +187,22 @@ public class MainActivity extends AppCompatActivity
         ciezar=seekbar1.getProgress()+1;
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.MetricsUnit) {
             SetMenuTracker("Action","Metrics Unit");
             unit=" kg";
             seekbar1.setMax(299);
             seekbar1.setProgress((int) (ciezar/2.205));
-            licz();
+            licz(isRound);
         } else if (id == R.id.ImperialUnit) {
             SetMenuTracker("Action","Imperial Unit");
             unit=" lbs";
             seekbar1.setMax(599);
             seekbar1.setProgress((int) (ciezar*2.205));
-            licz();
+            licz(isRound);
+        } else if (id == R.id.Round) {
+            SetMenuTracker("Action","Round result");
+            isRound = !isRound;
+            licz(isRound);
         } else if (id == R.id.nav_share) {
             SetMenuTracker("Action","Share");
             ShareApp();
@@ -205,8 +210,7 @@ public class MainActivity extends AppCompatActivity
             SetMenuTracker("Action","Feedback");
             CreateDialogFeedbackView();
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -218,32 +222,51 @@ public class MainActivity extends AppCompatActivity
                 .build());
     }
 
-    private void ShareApp() {
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        String shareBody = "Have a precise measurements! https://play.google.com/store/apps/details?id=com.pawe322dev.gymcalculator";
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "GymCalculator");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    private String doCountRound(boolean isRound, int powt, double ciezarNa1){
+        String CountedFraze;
+        if(!isRound){
+            CountedFraze = ((new DecimalFormat("##.##").format((ciezarNa1 * (dziel[powt]) * 100) / 100)) + unit);
+        } else {
+            CountedFraze = ((new DecimalFormat("##").format((ciezarNa1 * (dziel[powt]) * 100) / 100)) + unit);
+        }
+
+        return CountedFraze;
     }
+
     //method that counts the load on the bar
-    private void licz() {
-        long ciezarNa1;
+    private void licz(boolean isRound) {
+        double ciezarNa1;
         ciezar=seekbar1.getProgress()+1;
         powt=seekbar2.getProgress()+1;
-        ciezarNa1=Math.round(ciezar / (dziel[powt - 1]) * 100) / 100;
+        String DefValue;
 
-        RM1.setText(String.valueOf((int)ciezarNa1) + unit);
-        if(powt == 5)RM5.setText(String.valueOf((int)ciezar) + unit);
-        else RM5.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[4]) * 100) / 100) + unit);
-        if(powt == 6)RM6.setText(String.valueOf((int)ciezar) + unit);
-        else RM6.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[5]) * 100) / 100) + unit);
-        if(powt == 8)RM8.setText(String.valueOf((int)ciezar) + unit);
-        else RM8.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[7]) * 100) / 100) + unit);
-        if(powt == 10)RM10.setText(String.valueOf((int)ciezar) + unit);
-        else RM10.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[9]) * 100) / 100) + unit);
-        if(powt == 12)RM12.setText(String.valueOf((int)ciezar) + unit);
-        else RM12.setText(String.valueOf(Math.round(ciezarNa1 * (dziel[11]) * 100) / 100) + unit);
+        ciezarNa1=(ciezar / (dziel[powt - 1]) * 100) / 100;
+
+        if(!isRound) {
+            DefValue = (new DecimalFormat("##.##").format(ciezar) + unit);
+            RM1.setText(new DecimalFormat("##.##").format(ciezarNa1) + unit);
+        } else {
+            DefValue = (new DecimalFormat("##").format(ciezar) + unit);
+            RM1.setText(String.valueOf((int)ciezarNa1) + unit);
+        }
+
+        if(powt == 5)RM5.setText(DefValue);
+        else RM5.setText(doCountRound(isRound, 4, ciezarNa1));
+
+        if(powt == 6)RM6.setText(DefValue);
+        else RM6.setText(doCountRound(isRound, 5,ciezarNa1));
+
+        if(powt == 8)RM8.setText(DefValue);
+        else RM8.setText(doCountRound(isRound, 7,ciezarNa1));
+
+        if(powt == 10)RM10.setText(DefValue);
+        else RM10.setText(doCountRound(isRound, 9,ciezarNa1));
+
+        if(powt == 12)RM12.setText(DefValue);
+        else RM12.setText(doCountRound(isRound, 11,ciezarNa1));
+
+        if(powt == 15)RM15.setText(DefValue);
+        else RM15.setText(doCountRound(isRound, 14,ciezarNa1));
     }
 
     private void CreateDialogFeedbackView() {
@@ -297,4 +320,12 @@ public class MainActivity extends AppCompatActivity
             sender.start();
     }
 
+    private void ShareApp() {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "Have a precise measurements! https://play.google.com/store/apps/details?id=com.pawe322dev.gymcalculator";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "GymCalculator");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
 }

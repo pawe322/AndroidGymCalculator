@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Units">Jednostka</string>
-    <string name="Metrics">Metry</string>
+    <string name="Metrics">Kilogramy</string>
     <string name="Imperial">Funty</string>
     <string name="Round">Włącz/Wyłącz zaokrąglanie wyniku</string>
     <string name="Communicate">Podziel się</string>

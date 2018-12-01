@@ -1,17 +1,17 @@
 <resources>
-    <string name="app_name">GymCalculator</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">GymCalculator</string>
-    <string name="nav_header_subtitle">pawe322Dev@gmail.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="RM1">1RM</string>
-    <string name="RM5">5RM</string>
-    <string name="RM6">6RM</string>
-    <string name="RM8">8RM</string>
-    <string name="RM10">10RM</string>
-    <string name="RM12">12RM</string>
-    <string name="RM15">15RM</string>
+    <string name="app_name" translatable="false">GymCalculator</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">GymCalculator</string>
+    <string name="nav_header_subtitle" translatable="false">pawe322Dev@gmail.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="RM1" translatable="false">1RM</string>
+    <string name="RM5" translatable="false">5RM</string>
+    <string name="RM6" translatable="false">6RM</string>
+    <string name="RM8" translatable="false">8RM</string>
+    <string name="RM10" translatable="false">10RM</string>
+    <string name="RM12" translatable="false">12RM</string>
+    <string name="RM15" translatable="false">15RM</string>
     <string name="Units">Units</string>
     <string name="Metrics">Metrics</string>
     <string name="Imperial">Imperial</string>
@@ -20,4 +20,15 @@
     <string name="Share">Share</string>
     <string name="Send_feedback">Send feedback</string>
     <string name="Feedback_msg">Want to report a bug or have a suggestion? Tell me:</string>
+    <string name="MessageSent">Successfully sent message</string>
+    <string name="MessageNotSent">Message not sent</string>
+    <string name="ExitMessage">Give me time</string>
+    <string name="SendMessage">OK</string>
+    <string name="Reps">reps</string>
+    <string name="shareMsg">Try it!</string>
+    <string name="InfoString">How to use it?</string>
+    <string name="InfoMsg">The first bar is responsible for the amount of weight you have raised, and
+                            the second one is responsible for the number of repetitions you have made.
+                            Thanks to this you will know what your max is for 1,5,6-15 repetitions.</string>
+    <string name="InfoDictionaryMsg">RM - Max repetitions</string>
 </resources>

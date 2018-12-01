@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
         mTracker = application.getDefaultTracker();
 
+        final String Reps = getString(R.string.Reps);
         // textView + seekbar from WEIGHT
         seekbar1 = findViewById(R.id.seekBar1);
         seekbar1.setMax(299);
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity
         seekbar2.setProgress(progress2);
         final TextView textView2 = findViewById(R.id.textView2);
         textView2.setTextSize(textsize);
-        textView2.setText(progress2+" reps");
+        textView2.setText(progress2+" "+Reps);
         RM1 = findViewById(R.id.RM1);
         RM5 = findViewById(R.id.RM5);
         RM6 = findViewById(R.id.RM6);
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 progress2 = i;
-                textView2.setText(progress2+1+" reps");
+                textView2.setText(progress2+1+" "+Reps);
                 licz(isRound);
             }
             @Override
@@ -178,6 +179,9 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        if (id == R.id.infoButton) {
+            CreateDialogInfoView();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -269,7 +273,31 @@ public class MainActivity extends AppCompatActivity
         else RM15.setText(doCountRound(isRound, 14,ciezarNa1));
     }
 
+    private void CreateDialogInfoView() {
+        final String accept = getString(R.string.SendMessage);
+        final String tryIt = getString(R.string.shareMsg);
+        final Context context = this;
+        LayoutInflater li = LayoutInflater.from(context);
+        View promptsView = li.inflate(R.layout.dialog_info, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        alertDialogBuilder.setView(promptsView);
+        alertDialogBuilder.setCancelable(false).setPositiveButton(accept, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), tryIt,Toast.LENGTH_SHORT).show();
+            }
+        });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        // show it
+        alertDialog.show();
+    }
+
     private void CreateDialogFeedbackView() {
+        final String msgSent = getString(R.string.MessageSent);
+        final String msgNotSent = getString(R.string.MessageNotSent);
+        final String exitMsg = getString(R.string.ExitMessage);
+        final String sendMsg = getString(R.string.SendMessage);
         final Context context = this;
         LayoutInflater li = LayoutInflater.from(context);
         View promptsView = li.inflate(R.layout.dialog_feedback, null);
@@ -279,24 +307,24 @@ public class MainActivity extends AppCompatActivity
         // set dialog message
         alertDialogBuilder
                 .setCancelable(false)
-                .setPositiveButton("OK",
+                .setPositiveButton(sendMsg,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 if(!userInput.getText().toString().matches("")){
                                     sendFeedbackMessage(userInput.getText().toString());
-                                    Toast.makeText(getApplicationContext(),"Successfully sent message",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), msgSent,Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(getApplicationContext(),"Message not sent ",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),msgNotSent,Toast.LENGTH_SHORT).show();
                                 }
                                 dialog.cancel();
 
                             }
                         })
-                .setNegativeButton("Give me time",
+                .setNegativeButton(exitMsg,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 dialog.cancel();
-                                Toast.makeText(getApplicationContext(),"Message not sent ",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),msgNotSent,Toast.LENGTH_SHORT).show();
                             }
                         });
         // create alert dialog
@@ -321,9 +349,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void ShareApp() {
+        String shareMsg = getString(R.string.shareMsg);
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        String shareBody = "Have a precise measurements! https://play.google.com/store/apps/details?id=com.pawe322dev.gymcalculator";
+        String shareBody = shareMsg+" https://play.google.com/store/apps/details?id=com.pawe322dev.gymcalculator";
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "GymCalculator");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));

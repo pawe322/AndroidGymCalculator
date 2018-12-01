@@ -29,8 +29,8 @@
         android:id="@+id/RM1string"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/RM1"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
         android:layout_marginLeft="43dp"
         android:text="@string/RM1"
         android:textSize="24sp" />
@@ -93,8 +93,9 @@
         android:id="@+id/RM1"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="219dp"
         android:textSize="24sp" />
 
     <TextView
@@ -134,7 +135,7 @@
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/RM10"
-        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignRight="@+id/textView2"
         android:layout_marginTop="0dp"
         android:textSize="24sp" />
 
@@ -188,15 +189,13 @@
         android:text="+1"
         android:textSize="29sp" />
 
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-8851289925888038/4305647802">
-    </com.google.android.gms.ads.AdView>
+        ads:adUnitId="ca-app-pub-8851289925888038/4305647802"></com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

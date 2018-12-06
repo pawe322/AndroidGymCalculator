@@ -66,10 +66,10 @@ public class MainActivity extends AppCompatActivity
         // textView + seekbar from WEIGHT
         seekbar1 = findViewById(R.id.seekBar1);
         seekbar1.setMax(299);
-        seekbar1.setProgress(progress1);
+        seekbar1.setProgress(0);
         final TextView textView1 = findViewById(R.id.textView1);
         textView1.setTextSize(textsize);
-        textView1.setText(progress1+unit);
+        textView1.setText(1+unit);
         seekbar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -86,10 +86,10 @@ public class MainActivity extends AppCompatActivity
         // textView + seekbar from REPS
         seekbar2 = findViewById(R.id.seekBar2);
         seekbar2.setMax(14);
-        seekbar2.setProgress(progress2);
+        seekbar2.setProgress(0);
         final TextView textView2 = findViewById(R.id.textView2);
         textView2.setTextSize(textsize);
-        textView2.setText(progress2+" "+Reps);
+        textView2.setText(progress2+unit);
         RM1 = findViewById(R.id.RM1);
         RM5 = findViewById(R.id.RM5);
         RM6 = findViewById(R.id.RM6);
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity
                 if(progress1>seekbar1.getMax()-1) {}
                     else progress1+= 1;
                 seekbar1.setProgress(progress1);
-                textView1.setText(progress1+1+unit);
+                textView1.setText(progress1+unit);
                 licz(isRound);
             }
         });
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity
                 if(progress1<1) {}
                     else progress1-= 1;
                 seekbar1.setProgress(progress1);
-                textView1.setText(progress1+1+unit);
+                textView1.setText(progress1+unit);
                 licz(isRound);
             }
         });

@@ -56,17 +56,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       /* new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent homeIntent = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(homeIntent);
-                finish();
-            }
-        }, SPLASH_TIME_OUT);*/
-
-       //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         MobileAds.initialize(this,"ca-app-pub-8851289925888038~7921459180");
 
         mAdView = findViewById(R.id.adView);
@@ -104,7 +93,7 @@ public class MainActivity extends AppCompatActivity
         seekbar2.setProgress(0);
         final TextView textView2 = findViewById(R.id.textView2);
         textView2.setTextSize(textsize);
-        textView2.setText(progress2+unit);
+        textView2.setText(progress2+" "+Reps);
         RM1 = findViewById(R.id.RM1);
         RM5 = findViewById(R.id.RM5);
         RM6 = findViewById(R.id.RM6);

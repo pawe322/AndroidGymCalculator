@@ -6,10 +6,16 @@
     <string name="nav_header_subtitle" translatable="false">pawe322Dev@gmail.com</string>
     <string name="nav_header_desc" translatable="false">Navigation header</string>
     <string name="RM1" translatable="false">1RM</string>
+    <string name="RM2" translatable="false">2RM</string>
+    <string name="RM3" translatable="false">3RM</string>
+    <string name="RM4" translatable="false">4RM</string>
     <string name="RM5" translatable="false">5RM</string>
     <string name="RM6" translatable="false">6RM</string>
+    <string name="RM7" translatable="false">7RM</string>
     <string name="RM8" translatable="false">8RM</string>
+    <string name="RM9" translatable="false">9RM</string>
     <string name="RM10" translatable="false">10RM</string>
+    <string name="RM11" translatable="false">11RM</string>
     <string name="RM12" translatable="false">12RM</string>
     <string name="RM15" translatable="false">15RM</string>
     <string name="Units">Units</string>
@@ -31,4 +37,6 @@
                             the second one is responsible for the number of repetitions you have made.
                             Thanks to this you will know what your max is for 1,5,6-15 repetitions.</string>
     <string name="InfoDictionaryMsg">RM - Max repetitions</string>
+    <string name="minusOne">-1</string>
+    <string name="plusOne">+1</string>
 </resources>

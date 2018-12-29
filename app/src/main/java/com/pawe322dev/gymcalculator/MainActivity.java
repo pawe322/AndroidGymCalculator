@@ -1,5 +1,6 @@
 package com.pawe322dev.gymcalculator;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,7 +36,7 @@ import java.text.DecimalFormat;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private static int SPLASH_TIME_OUT = 200;
-    TextView RM1,RM5,RM6,RM8,RM10,RM12, RM15;
+    TextView RM1,RM2,RM3,RM4,RM5,RM6,RM7,RM8,RM9,RM10,RM11,RM12,RM15;
     SeekBar seekbar1,seekbar2;
     int progress1 = 1;
     int progress2 = 1;
@@ -95,10 +96,16 @@ public class MainActivity extends AppCompatActivity
         textView2.setTextSize(textsize);
         textView2.setText(progress2+" "+Reps);
         RM1 = findViewById(R.id.RM1);
+        RM2 = findViewById(R.id.RM2);
+        RM3 = findViewById(R.id.RM3);
+        RM4 = findViewById(R.id.RM4);
         RM5 = findViewById(R.id.RM5);
         RM6 = findViewById(R.id.RM6);
+        RM7 = findViewById(R.id.RM7);
         RM8 = findViewById(R.id.RM8);
+        RM9 = findViewById(R.id.RM9);
         RM10 = findViewById(R.id.RM10);
+        RM11 = findViewById(R.id.RM11);
         RM12 = findViewById(R.id.RM12);
         RM15 = findViewById(R.id.RM15);
 
@@ -242,6 +249,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     //method that counts the load on the bar
+    @SuppressLint("SetTextI18n")
     private void licz(boolean isRound) {
         double ciezarNa1;
         ciezar=seekbar1.getProgress()+1;
@@ -258,17 +266,35 @@ public class MainActivity extends AppCompatActivity
             RM1.setText(String.valueOf((int)ciezarNa1) + unit);
         }
 
+        if(powt == 2)RM2.setText(DefValue);
+        else RM2.setText(doCountRound(isRound, 1, ciezarNa1));
+
+        if(powt == 3)RM3.setText(DefValue);
+        else RM3.setText(doCountRound(isRound, 2, ciezarNa1));
+
+        if(powt == 4)RM4.setText(DefValue);
+        else RM4.setText(doCountRound(isRound, 3, ciezarNa1));
+
         if(powt == 5)RM5.setText(DefValue);
         else RM5.setText(doCountRound(isRound, 4, ciezarNa1));
 
         if(powt == 6)RM6.setText(DefValue);
         else RM6.setText(doCountRound(isRound, 5,ciezarNa1));
 
+        if(powt == 7)RM7.setText(DefValue);
+        else RM7.setText(doCountRound(isRound, 6, ciezarNa1));
+
         if(powt == 8)RM8.setText(DefValue);
         else RM8.setText(doCountRound(isRound, 7,ciezarNa1));
 
+        if(powt == 9)RM9.setText(DefValue);
+        else RM9.setText(doCountRound(isRound, 8, ciezarNa1));
+
         if(powt == 10)RM10.setText(DefValue);
         else RM10.setText(doCountRound(isRound, 9,ciezarNa1));
+
+        if(powt == 11)RM11.setText(DefValue);
+        else RM11.setText(doCountRound(isRound, 10, ciezarNa1));
 
         if(powt == 12)RM12.setText(DefValue);
         else RM12.setText(doCountRound(isRound, 11,ciezarNa1));

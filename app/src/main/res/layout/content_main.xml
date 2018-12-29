@@ -8,12 +8,14 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <!-- ADJUSTABLE SECTION -->
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="110dp"
         android:layout_height="44dp"
-        android:layout_alignRight="@+id/RM1"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp" />
 
     <TextView
@@ -21,131 +23,8 @@
         android:layout_width="110dp"
         android:layout_height="44dp"
         android:layout_below="@+id/seekBar1"
-        android:layout_alignRight="@+id/RM1"
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:layout_marginTop="0dp" />
-
-    <TextView
-        android:id="@+id/RM1string"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/RM1"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="43dp"
-        android:text="@string/RM1"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM5string"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/RM1string"
-        android:layout_below="@+id/RM1string"
-        android:text="@string/RM5"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM6string"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/RM5string"
-        android:layout_below="@+id/RM5string"
-        android:text="@string/RM6"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM8string"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/RM6string"
-        android:layout_below="@+id/RM6string"
-        android:text="@string/RM8"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM10string"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/RM8string"
-        android:layout_below="@+id/RM8string"
-        android:text="@string/RM10"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM12string"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/RM10string"
-        android:layout_below="@+id/RM10string"
-        android:text="@string/RM12"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM15string"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/RM12string"
-        android:layout_below="@+id/RM12string"
-        android:text="@string/RM15"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM1"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="219dp"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM5"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/RM1"
-        android:layout_centerHorizontal="true"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM6"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/RM5"
-        android:layout_centerHorizontal="true"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM8"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/RM6"
-        android:layout_centerHorizontal="true"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM10"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/RM8"
-        android:layout_centerHorizontal="true"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM12"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/RM10"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_marginTop="0dp"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/RM15"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/RM12"
-        android:layout_centerHorizontal="true"
-        android:textSize="24sp" />
 
     <SeekBar
         android:id="@+id/seekBar2"
@@ -173,7 +52,7 @@
         android:layout_marginBottom="-7dp"
         android:layout_toStartOf="@+id/seekBar1"
         android:layout_toLeftOf="@+id/seekBar1"
-        android:text="-1"
+        android:text="@string/minusOne"
         android:textSize="29sp" />
 
     <Button
@@ -186,8 +65,235 @@
         android:layout_marginBottom="-8dp"
         android:layout_toStartOf="@+id/seekBar1"
         android:layout_toLeftOf="@+id/seekBar1"
-        android:text="+1"
+        android:text="@string/plusOne"
         android:textSize="29sp" />
+
+    <!-- VIEW SECTION -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="55dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="43dp"
+            android:layout_marginStart="43dp">
+
+            <TextView
+                android:id="@+id/RM1string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/RM1"
+                android:text="@string/RM1"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM2string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM1string"
+                android:text="@string/RM2"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM3string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/RM3"
+                android:text="@string/RM3"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM4string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/RM4"
+                android:text="@string/RM4"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM5string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM4string"
+                android:text="@string/RM5"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM6string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM5string"
+                android:text="@string/RM6"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM7string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM6string"
+                android:text="@string/RM7"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM8string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM7string"
+                android:text="@string/RM8"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM9string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM8string"
+                android:text="@string/RM9"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM10string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM9string"
+                android:text="@string/RM10"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM11string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM10string"
+                android:text="@string/RM11"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM12string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM11string"
+                android:text="@string/RM12"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM15string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM12string"
+                android:text="@string/RM15"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM1"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM2"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM1"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM3"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM2"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM4"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM3"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM5"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM4"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM6"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM5"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM7"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM6"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM8"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM7"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM9"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM8"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM10"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM9"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM11"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM10"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM12"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM11"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/RM15"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RM12"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+    </ScrollView>
+
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"

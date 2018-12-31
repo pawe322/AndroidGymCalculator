@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         final String Reps = getString(R.string.Reps);
         // textView + seekbar from WEIGHT
         seekbar1 = findViewById(R.id.seekBar1);
-        seekbar1.setMax(299);
+        seekbar1.setMax(300);
         seekbar1.setProgress(0);
         final TextView textView1 = findViewById(R.id.textView1);
         textView1.setTextSize(textsize);
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 progress1=i;
-                textView1.setText(progress1+1+unit);
+                textView1.setText(progress1+unit);
                 licz(isRound);
             }
             @Override
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 if(progress1>seekbar1.getMax()-1) {}
-                    else progress1+= 1;
+                    else progress1+=1;
                 seekbar1.setProgress(progress1);
                 textView1.setText(progress1+unit);
                 licz(isRound);
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 if(progress1<1) {}
-                    else progress1-= 1;
+                    else progress1-=1;
                 seekbar1.setProgress(progress1);
                 textView1.setText(progress1+unit);
                 licz(isRound);
@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressLint("SetTextI18n")
     private void licz(boolean isRound) {
         double ciezarNa1;
-        ciezar=seekbar1.getProgress()+1;
+        ciezar=seekbar1.getProgress();
         powt=seekbar2.getProgress()+1;
         String DefValue;
 

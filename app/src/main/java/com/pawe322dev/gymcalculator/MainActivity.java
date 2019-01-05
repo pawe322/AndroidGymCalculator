@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
@@ -56,6 +57,13 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //First start of the app
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        boolean firstStart = prefs.getBoolean("firstStart", true);
+        if (firstStart) {
+            CreateDialogInfoView();
+        }
 
         MobileAds.initialize(this,"ca-app-pub-8851289925888038~7921459180");
 
@@ -321,6 +329,12 @@ public class MainActivity extends AppCompatActivity
         AlertDialog alertDialog = alertDialogBuilder.create();
         // show it
         alertDialog.show();
+
+        //First start of the app
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("firstStart", false);
+        editor.apply();
     }
 
     private void CreateDialogFeedbackView() {

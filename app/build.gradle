@@ -6,8 +6,8 @@ android {
         applicationId "com.pawe322dev.gymcalculator"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 11
-        versionName "1.52"
+        versionCode 12
+        versionName "1.53"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

@@ -37,6 +37,8 @@
                             the second one is responsible for the number of repetitions you have made.
                             Thanks to this you will know what your max is for 1,5,6-15 repetitions.</string>
     <string name="InfoDictionaryMsg">RM - Max repetitions</string>
-    <string name="minusOne">-1</string>
-    <string name="plusOne">+1</string>
+    <string name="minusOne" translatable="false">-1</string>
+    <string name="plusOne" translatable="false">+1</string>
+    <string name="support">Support Developer</string>
+    <string name="watchAd">Watch Advertisement</string>
 </resources>

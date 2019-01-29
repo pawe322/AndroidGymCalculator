@@ -17,4 +17,6 @@
     <string name="InfoString">Jak tego używać?</string>
     <string name="InfoMsg">Pierwszy pasek odpowiedzialny jest za ilość ciężaru ile podniosłeś, a drugi opowiedzialny jest za ilość powtórzeń ile nim wykonałeś. Dzięki temu dowiesz się jaki jest Twój max na 1,5,6-15 powtórzeń.</string>
     <string name="InfoDictionaryMsg">RM - Maksymalna ilość powtórzeń</string>
+    <string name="support">Wspomóż twórcę</string>
+    <string name="watchAd">Włącz reklamę</string>
 </resources>

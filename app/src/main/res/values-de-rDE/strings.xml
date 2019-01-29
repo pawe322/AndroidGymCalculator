@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Units">Einheiten</string>
+    <string name="Metrics">Metriken</string>
+    <string name="Imperial">Kaiserliche</string>
+    <string name="Round">Runde ein- / ausschalten</string>
+    <string name="Communicate">Kommunizieren</string>
+    <string name="Share">Aktie</string>
+    <string name="Send_feedback">Feedback abschicken</string>
+    <string name="Feedback_msg">Möchten Sie einen Fehler melden oder einen Vorschlag haben? Sagen Sie mir:</string>
+    <string name="MessageSent">Nachricht wurde erfolgreich gesendet</string>
+    <string name="MessageNotSent">Nachricht nicht gesendet</string>
+    <string name="ExitMessage">Gib mir Zeit</string>
+    <string name="SendMessage">OK</string>
+    <string name="Reps">reps</string>
+    <string name="shareMsg">Versuch es!</string>
+    <string name="InfoString">Wie benutze ich es?</string>
+    <string name="InfoMsg">Der erste Balken ist für die Menge des Gewichts verantwortlich, die Sie angehoben haben, und der zweite ist für die Anzahl der Wiederholungen, die Sie gemacht haben. Dank dessen wissen Sie, wie viel Sie für 1,5,6-15 Wiederholungen maximal haben.</string>
+    <string name="InfoDictionaryMsg">RM - Max Wiederholungen</string>
+    <string name="support">Support-Entwickler</string>
+    <string name="watchAd">Werbung ansehen</string>
+</resources>

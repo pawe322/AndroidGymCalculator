@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -28,17 +26,22 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
 
 import java.text.DecimalFormat;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, RewardedVideoAdListener {
     private static int SPLASH_TIME_OUT = 200;
-    TextView RM1,RM2,RM3,RM4,RM5,RM6,RM7,RM8,RM9,RM10,RM11,RM12,RM15;
-    SeekBar seekbar1,seekbar2;
+    private TextView RM1,RM2,RM3,RM4,RM5,RM6,RM7,RM8,RM9,RM10,RM11,RM12,RM15;
+    private SeekBar seekbar1,seekbar2;
     int progress1 = 1;
     int progress2 = 1;
     int textsize = 30;
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
 
     private AdView mAdView;
+    private RewardedVideoAd mRewardedVideoAd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +75,11 @@ public class MainActivity extends AppCompatActivity
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        // Use an activity context to get the rewarded video instance.
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+        mRewardedVideoAd.setRewardedVideoAdListener(this);
+        loadRewardedVideoAd();
 
         // Google analytics
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
@@ -170,6 +180,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onResume() {
+        mRewardedVideoAd.resume(this);
         super.onResume();
         mTracker.setScreenName("Main Screen");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
@@ -183,6 +194,18 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        mRewardedVideoAd.destroy(this);
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        mRewardedVideoAd.pause(this);
+        super.onPause();
     }
 
     @Override
@@ -232,6 +255,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
             SetMenuTracker("Action","Feedback");
             CreateDialogFeedbackView();
+        } else if (id == R.id.watchAD) {
+            SetMenuTracker("Action","WatchAd");
+            startVideoAd(findViewById(R.id.watchAD));
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -400,5 +426,62 @@ public class MainActivity extends AppCompatActivity
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "GymCalculator");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
+
+    private void loadRewardedVideoAd() {
+        if(!mRewardedVideoAd.isLoaded()){
+            mRewardedVideoAd.loadAd("ca-app-pub-8851289925888038/6228469412", new AdRequest.Builder().build());
+        }
+    }
+
+    public void startVideoAd(View view) {
+        if(mRewardedVideoAd.isLoaded()) {
+            mRewardedVideoAd.show();
+        }
+    }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        loadRewardedVideoAd();
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem) {
+        Toast.makeText(this, "onRewarded! currency: " + rewardItem.getType() + "  amount: " +
+                rewardItem.getAmount(), Toast.LENGTH_SHORT).show();
+
+        progress1+=rewardItem.getAmount();
+        seekbar1.setProgress(progress1);
+        licz(isRound);
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int i) {
+
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+
     }
 }

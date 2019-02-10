@@ -40,5 +40,5 @@
     <string name="minusOne" translatable="false">-1</string>
     <string name="plusOne" translatable="false">+1</string>
     <string name="support">Support Developer</string>
-    <string name="watchAd">Watch Advertisement</string>
+    <string name="watchAd">Buy me a coffee!</string>
 </resources>

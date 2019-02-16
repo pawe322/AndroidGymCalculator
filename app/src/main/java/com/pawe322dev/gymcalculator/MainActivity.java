@@ -253,12 +253,13 @@ public class MainActivity extends AppCompatActivity
             SetMenuTracker("Action","Share");
             ShareApp();
         } else if (id == R.id.nav_send) {
-            SetMenuTracker("Action","Feedback");
+            SetMenuTracker("Action", "Feedback");
             CreateDialogFeedbackView();
-        } else if (id == R.id.watchAD) {
-            SetMenuTracker("Action","WatchAd");
-            startVideoAd(findViewById(R.id.watchAD));
         }
+//        } else if (id == R.id.watchAD) {
+//            SetMenuTracker("Action","WatchAd");
+//            startVideoAd(findViewById(R.id.watchAD));
+//        }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -35,14 +35,14 @@
         </menu>
     </item>
 
-    <item android:title="@string/support">
-        <menu>
-            <item
-                android:id="@+id/watchAD"
-                android:checkable="false"
-                android:title="@string/watchAd"
-                android:icon="@drawable/ic_movie_black_24dp"/>
-        </menu>
-    </item>
+    <!--<item android:title="@string/support">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/watchAD"-->
+                <!--android:checkable="false"-->
+                <!--android:title="@string/watchAd"-->
+                <!--android:icon="@drawable/ic_movie_black_24dp"/>-->
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>

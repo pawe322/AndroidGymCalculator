@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Units">Unidades</string>
+    <string name="Metrics">Métrica</string>
+    <string name="Imperial">Imperial</string>
+    <string name="Round">Encender / apagar la Ronda</string>
+    <string name="Communicate">Comunicar</string>
+    <string name="Share">Compartir</string>
+    <string name="Send_feedback">Enviar comentarios</string>
+    <string name="Feedback_msg">¿Quieres reportar un error o tener una sugerencia? Dime:</string>
+    <string name="MessageSent">Mensaje enviado exitosamente</string>
+    <string name="MessageNotSent">Mensaje no enviado</string>
+    <string name="ExitMessage">Dame tiempo</string>
+    <string name="SendMessage">OK</string>
+    <string name="Reps">reps</string>
+    <string name="shareMsg">¡Intentalo!</string>
+    <string name="InfoString">¿Cómo usarlo?</string>
+    <string name="InfoMsg">La primera barra es responsable de la cantidad de peso que ha aumentado, y la segunda es responsable del número de repeticiones que ha realizado. Gracias a esto sabrás cuál es tu máximo para 1,5,6-15 repeticiones.</string>
+    <string name="InfoDictionaryMsg">RM - Max repeticiones</string>
+    <string name="support">Desarrollador de soporte</string>
+    <string name="watchAd">Comprame un cafe</string>
+</resources>

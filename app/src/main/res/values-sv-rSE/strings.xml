@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Units">Enheter</string>
+    <string name="Metrics">Metrik</string>
+    <string name="Imperial">Kejserlig</string>
+    <string name="Round">Slå på / av Runda</string>
+    <string name="Communicate">Kommunicera</string>
+    <string name="Share">Dela med sig</string>
+    <string name="Send_feedback">Skicka feedback</string>
+    <string name="Feedback_msg">Vill du anmäla ett fel eller ha ett förslag? Berätta för mig:</string>
+    <string name="MessageSent">Meddelandet skickades framgångsrikt</string>
+    <string name="MessageNotSent">Meddelandet är inte skickat</string>
+    <string name="ExitMessage">Ge mig tid</string>
+    <string name="SendMessage">OK</string>
+    <string name="Reps">reps</string>
+    <string name="InfoString">Hur man använder det?</string>
+    <string name="shareMsg">Försök!</string>
+    <string name="InfoMsg">Den första fältet är ansvarig för den vikt du har tagit upp, och den andra är ansvarig för antalet repetitioner du har gjort. Tack vare detta kommer du att veta vad din max är för 1,5,6-15 repetitioner.</string>
+    <string name="InfoDictionaryMsg">RM - Max repetitioner</string>
+    <string name="support">Supportutvecklare</string>
+    <string name="watchAd">Köp mig en kaffe!</string>
+</resources>

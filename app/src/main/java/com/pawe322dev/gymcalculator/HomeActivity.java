@@ -25,7 +25,7 @@ public class HomeActivity extends AppCompatActivity {
         Thread timer = new Thread(){
             public void run(){
                 try {
-                    sleep(2500);
+                    sleep(400);
                 }catch(InterruptedException e) {
                     e.printStackTrace();
                 }

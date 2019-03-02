@@ -38,7 +38,7 @@ import java.text.DecimalFormat;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, RewardedVideoAdListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
     private static int SPLASH_TIME_OUT = 200;
     private TextView RM1,RM2,RM3,RM4,RM5,RM6,RM7,RM8,RM9,RM10,RM11,RM12,RM15;
     private SeekBar seekbar1,seekbar2;
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
 
     private AdView mAdView;
-    private RewardedVideoAd mRewardedVideoAd;
+    //private RewardedVideoAd mRewardedVideoAd;
 
 
     @Override
@@ -70,16 +70,16 @@ public class MainActivity extends AppCompatActivity
             CreateDialogInfoView();
         }
 
-        MobileAds.initialize(this,"ca-app-pub-8851289925888038~7921459180");
+        MobileAds.initialize(this,"ca-app-pub-5060517355637314~7420559712");
 
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
         // Use an activity context to get the rewarded video instance.
-        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
-        mRewardedVideoAd.setRewardedVideoAdListener(this);
-        loadRewardedVideoAd();
+//        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+//        mRewardedVideoAd.setRewardedVideoAdListener(this);
+//        loadRewardedVideoAd();
 
         // Google analytics
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onResume() {
-        mRewardedVideoAd.resume(this);
+        //mRewardedVideoAd.resume(this);
         super.onResume();
         mTracker.setScreenName("Main Screen");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
@@ -198,13 +198,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
-        mRewardedVideoAd.destroy(this);
+        //mRewardedVideoAd.destroy(this);
         super.onDestroy();
     }
 
     @Override
     protected void onPause() {
-        mRewardedVideoAd.pause(this);
+        //mRewardedVideoAd.pause(this);
         super.onPause();
     }
 
@@ -429,7 +429,7 @@ public class MainActivity extends AppCompatActivity
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 
-    private void loadRewardedVideoAd() {
+    /*private void loadRewardedVideoAd() {
         if(!mRewardedVideoAd.isLoaded()){
             mRewardedVideoAd.loadAd("ca-app-pub-8851289925888038/6228469412", new AdRequest.Builder().build());
         }
@@ -484,5 +484,5 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onRewardedVideoCompleted() {
 
-    }
+    }*/
 }

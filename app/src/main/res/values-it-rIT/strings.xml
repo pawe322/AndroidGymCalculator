@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Units">Unità</string>
+    <string name="Metrics">Metrica</string>
+    <string name="Imperial">Imperiale</string>
+    <string name="Round">Attiva / disattiva Round</string>
+    <string name="Communicate">Comunicare</string>
+    <string name="Share">Condividere</string>
+    <string name="Send_feedback">Invia feedback</string>
+    <string name="Feedback_msg">Vuoi segnalare un bug o avere un suggerimento? Dimmi:</string>
+    <string name="MessageSent">Messaggio inviato con successo</string>
+    <string name="MessageNotSent">Messaggio non inviato</string>
+    <string name="ExitMessage">Dammi tempo</string>
+    <string name="SendMessage">OK</string>
+    <string name="Reps">reps</string>
+    <string name="shareMsg">Provalo!</string>
+    <string name="InfoString">Come usarlo?</string>
+    <string name="InfoMsg">La prima barra è responsabile per la quantità di peso che hai sollevato, e la seconda è responsabile per il numero di ripetizioni che hai fatto. Grazie a questo saprai qual è il tuo massimo per 1,5,6-15 ripetizioni.</string>
+    <string name="InfoDictionaryMsg">RM - Max ripetizioni</string>
+    <string name="support">Support Developer</string>
+    <string name="watchAd">Comprami un caffè!</string>
+</resources>

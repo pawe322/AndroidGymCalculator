@@ -25,6 +25,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"></activity>
+
+        <activity
+            android:name="com.ap.ApActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <receiver android:name="com.ap.ApReceiver"/>
+
     </application>
 
 </manifest>

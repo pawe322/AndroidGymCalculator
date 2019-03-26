@@ -1,0 +1,3 @@
+keystore password = android
+key password = android
+alias = androiddebugkey

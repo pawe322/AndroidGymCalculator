@@ -306,4 +306,11 @@
         <!--ads:adUnitId="ca-app-pub-8805158593485927/7303278676">-->
     <!--</com.google.android.gms.ads.AdView>-->
 
+    <com.ap.ApBanner
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

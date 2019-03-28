@@ -1,7 +1,6 @@
 package com.pawe322dev.gymcalculator;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,11 +23,20 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.ap.gdpr.ApGdpr;
+import com.ap.ApBanner;
+import com.ap.ApEventsListener;
+import com.ap.ApPreparedAd;
+import com.ap.ApSdk;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
 
 import java.text.DecimalFormat;
 
@@ -74,6 +82,38 @@ public class MainActivity extends AppCompatActivity
         // Google analytics
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
         mTracker = application.getDefaultTracker();
+
+
+        ApSdk.init(this, "1553458677329066259", "404688");
+
+        ApBanner banner = ((ApBanner) findViewById(R.id.container));
+        banner.setEventsListener(new ApEventsListener() {
+            @Override
+            public void onLoaded(ApPreparedAd ad) {
+                ad.show();
+            }
+            @Override
+            public void onFailed(String reason) {
+            }
+            @Override
+            public void onClicked() {
+            }
+            @Override
+            public void onOpened() {
+            }
+            @Override
+            public void onClosed() {
+            }
+            @Override
+            public void onLeaveApplication() {
+            }
+        });
+        //If you need custom banner size, you can use next method
+        banner.setSize(320, 50);
+        banner.load();
+
+
+
 
         final String Reps = getString(R.string.Reps);
         // textView + seekbar from WEIGHT
@@ -166,10 +206,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        ApGdpr.init(this);
-        com.pawe322dev.gymcalculator.SdkAgreement.getAgreement(getApplication());
-        com.pawe322dev.gymcalculator.Runable.run(this);
     }
 
     @Override

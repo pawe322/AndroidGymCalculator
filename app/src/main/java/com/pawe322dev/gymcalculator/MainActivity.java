@@ -23,10 +23,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ap.ApBanner;
-import com.ap.ApEventsListener;
-import com.ap.ApPreparedAd;
-import com.ap.ApSdk;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -59,6 +55,7 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
 
     private AdView mAdView;
+    //private RewardedVideoAd mRewardedVideoAd;
 
 
     @Override
@@ -73,47 +70,20 @@ public class MainActivity extends AppCompatActivity
             CreateDialogInfoView();
         }
 
-        //MobileAds.initialize(this,"ca-app-pub-8805158593485927~1844257807");
+        MobileAds.initialize(this,"ca-app-pub-5060517355637314~7420559712");
 
-//        mAdView = findViewById(R.id.adView);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        // Use an activity context to get the rewarded video instance.
+//        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+//        mRewardedVideoAd.setRewardedVideoAdListener(this);
+//        loadRewardedVideoAd();
 
         // Google analytics
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
         mTracker = application.getDefaultTracker();
-
-
-        ApSdk.init(this, "1553458677329066259", "404688");
-
-        ApBanner banner = ((ApBanner) findViewById(R.id.container));
-        banner.setEventsListener(new ApEventsListener() {
-            @Override
-            public void onLoaded(ApPreparedAd ad) {
-                ad.show();
-            }
-            @Override
-            public void onFailed(String reason) {
-            }
-            @Override
-            public void onClicked() {
-            }
-            @Override
-            public void onOpened() {
-            }
-            @Override
-            public void onClosed() {
-            }
-            @Override
-            public void onLeaveApplication() {
-            }
-        });
-        //If you need custom banner size, you can use next method
-        banner.setSize(320, 50);
-        banner.load();
-
-
-
 
         final String Reps = getString(R.string.Reps);
         // textView + seekbar from WEIGHT

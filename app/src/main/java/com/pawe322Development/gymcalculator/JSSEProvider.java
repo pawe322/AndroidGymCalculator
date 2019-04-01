@@ -1,4 +1,4 @@
-package com.pawe322dev.gymcalculator;
+package com.pawe322Development.gymcalculator;
 
 import java.security.AccessController;
 import java.security.Provider;

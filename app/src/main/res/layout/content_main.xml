@@ -44,27 +44,29 @@
 
     <Button
         android:id="@+id/buttonMinusWeight"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
+        android:layout_width="65dp"
+        android:layout_height="50dp"
         android:layout_above="@+id/textView2"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
-        android:layout_marginBottom="-7dp"
+        android:layout_marginBottom="-3dp"
         android:layout_toStartOf="@+id/seekBar1"
         android:layout_toLeftOf="@+id/seekBar1"
+        android:background="@drawable/rounded_button"
         android:text="@string/minusOne"
         android:textSize="29sp" />
 
     <Button
         android:id="@+id/buttonPlusWeight"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
+        android:layout_width="65dp"
+        android:layout_height="50dp"
         android:layout_above="@+id/textView2"
-        android:layout_marginEnd="-265dp"
-        android:layout_marginRight="-265dp"
-        android:layout_marginBottom="-8dp"
+        android:layout_marginEnd="-249dp"
+        android:layout_marginRight="-249dp"
+        android:layout_marginBottom="-2dp"
         android:layout_toStartOf="@+id/seekBar1"
         android:layout_toLeftOf="@+id/seekBar1"
+        android:background="@drawable/rounded_button"
         android:text="@string/plusOne"
         android:textSize="29sp" />
 

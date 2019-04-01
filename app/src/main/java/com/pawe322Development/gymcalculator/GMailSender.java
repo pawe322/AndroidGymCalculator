@@ -1,4 +1,4 @@
-package com.pawe322dev.gymcalculator;
+package com.pawe322Development.gymcalculator;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;

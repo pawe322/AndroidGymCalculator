@@ -1,4 +1,4 @@
-package com.pawe322dev.gymcalculator;
+package com.pawe322Development.gymcalculator;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

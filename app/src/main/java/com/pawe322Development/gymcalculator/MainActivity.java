@@ -1,4 +1,4 @@
-package com.pawe322dev.gymcalculator;
+package com.pawe322Development.gymcalculator;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -26,13 +26,8 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.reward.RewardItem;
-import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.reward.RewardedVideoAd;
 
 import java.text.DecimalFormat;
 

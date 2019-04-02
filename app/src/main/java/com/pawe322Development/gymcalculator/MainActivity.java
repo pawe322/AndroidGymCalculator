@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
             CreateDialogInfoView();
         }
 
-        MobileAds.initialize(this,"ca-app-pub-5060517355637314~7420559712");
+        MobileAds.initialize(this,"ca-app-pub-8805158593485927~4923417527");
 
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();

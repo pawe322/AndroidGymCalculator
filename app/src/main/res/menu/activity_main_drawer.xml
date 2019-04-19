@@ -32,6 +32,10 @@
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/Send_feedback" />
+            <item
+                android:id="@+id/privacy_policy"
+                android:icon="@drawable/ic_assignment_black_24dp"
+                android:title="@string/privacy_policy" />
         </menu>
     </item>
 

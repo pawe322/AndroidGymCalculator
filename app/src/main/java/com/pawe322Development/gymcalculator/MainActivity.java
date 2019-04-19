@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -250,14 +251,20 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
             SetMenuTracker("Action", "Feedback");
             CreateDialogFeedbackView();
+        } else if (id == R.id.privacy_policy) {
+            SetMenuTracker("Action","Privacy policy");
+            goToUrl("https://sites.google.com/view/gymcalculatorprivacypolicy");
         }
-//        } else if (id == R.id.watchAD) {
-//            SetMenuTracker("Action","WatchAd");
-//            startVideoAd(findViewById(R.id.watchAD));
-//        }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void goToUrl (String url) {
+        Uri uriUrl = Uri.parse(url);
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
     }
 
     private void SetMenuTracker(String Category, String Action) {

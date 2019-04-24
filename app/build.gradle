@@ -31,7 +31,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-analytics:15.0.2'
     implementation 'com.google.firebase:firebase-core:15.0.2'
     implementation 'com.google.firebase:firebase-ads:15.0.0'
+    implementation 'com.google.firebase:firebase-database:15.0.0'
     implementation 'com.android.support:customtabs:27.1.1'
     implementation 'com.google.android.gms:play-services-measurement-base:15.0.2'
+    implementation 'com.firebase:firebase-client-android:2.5.2'
 }
 apply plugin: 'com.google.gms.google-services'

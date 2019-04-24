@@ -20,15 +20,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DecimalFormat;
 
@@ -46,6 +54,7 @@ public class MainActivity extends AppCompatActivity
     double[] dziel = new double[] {1, 0.943, 0.906, 0.881, 0.856, 0.831, 0.807, 0.786, 0.765, 0.744, 0.723, 0.703, 0.688, 0.675, 0.662};
     String unit = " kg";
     boolean isRound = false;
+    private String adMobUnitID;
 
     private Tracker mTracker;
     private static final String TAG = "MainActivity";
@@ -68,14 +77,7 @@ public class MainActivity extends AppCompatActivity
 
         MobileAds.initialize(this,"ca-app-pub-8805158593485927~4923417527");
 
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
-        // Use an activity context to get the rewarded video instance.
-//        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
-//        mRewardedVideoAd.setRewardedVideoAdListener(this);
-//        loadRewardedVideoAd();
+        LoadAdMobUnitID();
 
         // Google analytics
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
@@ -429,6 +431,33 @@ public class MainActivity extends AppCompatActivity
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "GymCalculator");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
+
+    private void LoadAdMobUnitID(){
+        Firebase.setAndroidContext(this);
+        Firebase myFirebase = new Firebase("https://gymcalculator-73017.firebaseio.com/admob");
+        myFirebase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                adMobUnitID = dataSnapshot.getValue(String.class);
+                LoadAdMobAd(adMobUnitID);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
+
+    private void LoadAdMobAd(String unitId){
+        View adContainer = findViewById(R.id.adMobView);
+        mAdView = new AdView(this);
+        mAdView.setAdSize(AdSize.BANNER);
+        mAdView.setAdUnitId(unitId);
+        ((RelativeLayout)adContainer).addView(mAdView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     /*private void loadRewardedVideoAd() {

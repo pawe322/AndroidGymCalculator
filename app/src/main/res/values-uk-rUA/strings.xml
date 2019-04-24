@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Units">Одиниці</string>
+    <string name="Metrics">Показники</string>
+    <string name="Imperial">Імперіал</string>
+    <string name="Round">Увімкнути / вимкнути раунд</string>
+    <string name="Communicate">Спілкуйтеся</string>
+    <string name="Share">Частка</string>
+    <string name="Send_feedback">Надіслати відгук</string>
+    <string name="Feedback_msg">Хочете повідомити про помилку або отримати пропозицію? Скажи мені:</string>
+    <string name="MessageSent">Повідомлення успішно надіслано</string>
+    <string name="MessageNotSent">Повідомлення не надіслано</string>
+    <string name="ExitMessage">Дайте мені час</string>
+    <string name="SendMessage">в порядку</string>
+    <string name="Reps">повторень</string>
+    <string name="shareMsg">Спробуй це!</string>
+    <string name="InfoString">Як його використовувати?</string>
+    <string name="InfoMsg">Перша панель відповідає за кількість ваги, яку ви підняли, а друга відповідає за кількість повторів, які ви зробили. Завдяки цьому ви будете знати, що ваш макс для 1,5,6-15 повторень.</string>
+    <string name="InfoDictionaryMsg">RM - Макс. Повторів</string>
+    <string name="support">Розробник підтримки</string>
+    <string name="watchAd">Купіть мені каву!</string>
+    <string name="privacy_policy">Політика конфіденційності</string>
+    <string name="partners_sites">Партнерські сайти</string>
+    <string name="Info">Інформація</string>
+</resources>

@@ -44,23 +44,24 @@ import java.text.DecimalFormat;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
     private static int SPLASH_TIME_OUT = 200;
-    private TextView RM1,RM2,RM3,RM4,RM5,RM6,RM7,RM8,RM9,RM10,RM11,RM12,RM15;
+    private TextView RM1,RM2,RM3,RM4,RM5,RM6,RM7,RM8,RM9,RM10,RM11,RM12,RM15,textView1,textView2;
     private SeekBar seekbar1,seekbar2;
-    int progress1 = 1;
-    int progress2 = 1;
-    int textsize = 30;
-    double ciezar;
-    int powt;
-    double[] dziel = new double[] {1, 0.943, 0.906, 0.881, 0.856, 0.831, 0.807, 0.786, 0.765, 0.744, 0.723, 0.703, 0.688, 0.675, 0.662};
-    String unit = " kg";
-    boolean isRound = false;
-    private String adMobUnitID;
-
+    private Button buttonPW, buttonMW;
+    private Toolbar toolbar;
+    private int progress1 = 1;
+    private int progress2 = 1;
+    private int textsize = 30;
+    private double ciezar;
+    private int powt;
+    private double[] dziel = new double[] {1, 0.943, 0.906, 0.881, 0.856, 0.831, 0.807, 0.786, 0.765, 0.744, 0.723, 0.703, 0.688, 0.675, 0.662};
+    private String unit = " kg";
+    private boolean isRound = false;
+    private String FirebaseUnitID, Reps, PartnersUrl;
+    private DrawerLayout drawer;
+    private NavigationView navigationView;
     private Tracker mTracker;
     private static final String TAG = "MainActivity";
-
     private AdView mAdView;
-    //private RewardedVideoAd mRewardedVideoAd;
 
 
     @Override
@@ -76,104 +77,12 @@ public class MainActivity extends AppCompatActivity
         }
 
         MobileAds.initialize(this,"ca-app-pub-8805158593485927~4923417527");
-
-        LoadAdMobUnitID();
-
+        GetFirebaseAdmobData();
         // Google analytics
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
         mTracker = application.getDefaultTracker();
 
-        final String Reps = getString(R.string.Reps);
-        // textView + seekbar from WEIGHT
-        seekbar1 = findViewById(R.id.seekBar1);
-        seekbar1.setMax(300);
-        seekbar1.setProgress(0);
-        final TextView textView1 = findViewById(R.id.textView1);
-        textView1.setTextSize(textsize);
-        textView1.setText(1+unit);
-        seekbar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                progress1=i;
-                textView1.setText(progress1+unit);
-                licz(isRound);
-            }
-            @Override
-            public void onStartTrackingTouch (SeekBar seekBar){}
-            @Override
-            public void onStopTrackingTouch (SeekBar seekBar){}
-        });
-
-        // textView + seekbar from REPS
-        seekbar2 = findViewById(R.id.seekBar2);
-        seekbar2.setMax(14);
-        seekbar2.setProgress(0);
-        final TextView textView2 = findViewById(R.id.textView2);
-        textView2.setTextSize(textsize);
-        textView2.setText(progress2+" "+Reps);
-        RM1 = findViewById(R.id.RM1);
-        RM2 = findViewById(R.id.RM2);
-        RM3 = findViewById(R.id.RM3);
-        RM4 = findViewById(R.id.RM4);
-        RM5 = findViewById(R.id.RM5);
-        RM6 = findViewById(R.id.RM6);
-        RM7 = findViewById(R.id.RM7);
-        RM8 = findViewById(R.id.RM8);
-        RM9 = findViewById(R.id.RM9);
-        RM10 = findViewById(R.id.RM10);
-        RM11 = findViewById(R.id.RM11);
-        RM12 = findViewById(R.id.RM12);
-        RM15 = findViewById(R.id.RM15);
-
-        seekbar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                progress2 = i;
-                textView2.setText(progress2+1+" "+Reps);
-                licz(isRound);
-            }
-            @Override
-            public void onStartTrackingTouch (SeekBar seekBar){}
-            @Override
-            public void onStopTrackingTouch (SeekBar seekBar){}
-        });
-
-        // buttons
-        Button buttonPW = findViewById(R.id.buttonPlusWeight);
-        buttonPW.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(progress1>seekbar1.getMax()-1) {}
-                    else progress1+=1;
-                seekbar1.setProgress(progress1);
-                textView1.setText(progress1+unit);
-                licz(isRound);
-            }
-        });
-        Button buttonMW = findViewById(R.id.buttonMinusWeight);
-        buttonMW.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(progress1<1) {}
-                    else progress1-=1;
-                seekbar1.setProgress(progress1);
-                textView1.setText(progress1+unit);
-                licz(isRound);
-            }
-        });
-
-        // Toolbar stuff
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        InitializeView();
     }
 
     @Override
@@ -256,11 +165,116 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.privacy_policy) {
             SetMenuTracker("Action","Privacy policy");
             goToUrl("https://sites.google.com/view/gymcalculatorprivacypolicy");
+        } else if (id == R.id.partners_sites) {
+            SetMenuTracker("Action","Partners Sites");
+            goToUrl(PartnersUrl);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void InitializeView(){
+        Reps = getString(R.string.Reps);
+
+        seekbar1 = findViewById(R.id.seekBar1);
+        textView1 = findViewById(R.id.textView1);
+        seekbar2 = findViewById(R.id.seekBar2);
+        textView2 = findViewById(R.id.textView2);
+        RM1 = findViewById(R.id.RM1);
+        RM2 = findViewById(R.id.RM2);
+        RM3 = findViewById(R.id.RM3);
+        RM4 = findViewById(R.id.RM4);
+        RM5 = findViewById(R.id.RM5);
+        RM6 = findViewById(R.id.RM6);
+        RM7 = findViewById(R.id.RM7);
+        RM8 = findViewById(R.id.RM8);
+        RM9 = findViewById(R.id.RM9);
+        RM10 = findViewById(R.id.RM10);
+        RM11 = findViewById(R.id.RM11);
+        RM12 = findViewById(R.id.RM12);
+        RM15 = findViewById(R.id.RM15);
+
+        buttonPW = findViewById(R.id.buttonPlusWeight);
+        buttonMW = findViewById(R.id.buttonMinusWeight);
+        toolbar = findViewById(R.id.toolbar);
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
+        AddListenersToViewElements();
+    }
+
+    private void AddListenersToViewElements(){
+        // textView + seekbar from WEIGHT
+        seekbar1.setMax(300);
+        seekbar1.setProgress(0);
+        textView1.setTextSize(textsize);
+        textView1.setText(1+unit);
+        seekbar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                progress1=i;
+                textView1.setText(progress1+unit);
+                licz(isRound);
+            }
+            @Override
+            public void onStartTrackingTouch (SeekBar seekBar){}
+            @Override
+            public void onStopTrackingTouch (SeekBar seekBar){}
+        });
+
+        // textView + seekbar from REPS
+        seekbar2.setMax(14);
+        seekbar2.setProgress(0);
+        textView2.setTextSize(textsize);
+        textView2.setText(progress2+" "+Reps);
+        seekbar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                progress2 = i;
+                textView2.setText(progress2+1+" "+Reps);
+                licz(isRound);
+            }
+            @Override
+            public void onStartTrackingTouch (SeekBar seekBar){}
+            @Override
+            public void onStopTrackingTouch (SeekBar seekBar){}
+        });
+
+        // buttons
+        buttonPW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(progress1>seekbar1.getMax()-1) {}
+                else progress1+=1;
+                seekbar1.setProgress(progress1);
+                textView1.setText(progress1+unit);
+                licz(isRound);
+            }
+        });
+        buttonMW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(progress1<1) {}
+                else progress1-=1;
+                seekbar1.setProgress(progress1);
+                textView1.setText(progress1+unit);
+                licz(isRound);
+            }
+        });
+
+        // Toolbar stuff
+        setSupportActionBar(toolbar);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+        GetFirebasePartnersData();
     }
 
     private void goToUrl (String url) {
@@ -433,14 +447,14 @@ public class MainActivity extends AppCompatActivity
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 
-    private void LoadAdMobUnitID(){
+    private void GetFirebaseAdmobData(){
         Firebase.setAndroidContext(this);
-        Firebase myFirebase = new Firebase("https://gymcalculator-73017.firebaseio.com/admob");
-        myFirebase.addValueEventListener(new ValueEventListener() {
+        Firebase adMobFirebase = new Firebase("https://gymcalculator-73017.firebaseio.com/admob");
+        adMobFirebase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                adMobUnitID = dataSnapshot.getValue(String.class);
-                LoadAdMobAd(adMobUnitID);
+                FirebaseUnitID = dataSnapshot.getValue(String.class);
+                LoadAdMobAd(FirebaseUnitID);
             }
 
             @Override
@@ -460,60 +474,20 @@ public class MainActivity extends AppCompatActivity
         mAdView.loadAd(adRequest);
     }
 
-    /*private void loadRewardedVideoAd() {
-        if(!mRewardedVideoAd.isLoaded()){
-            mRewardedVideoAd.loadAd("ca-app-pub-8851289925888038/6228469412", new AdRequest.Builder().build());
-        }
+    private void GetFirebasePartnersData() {
+        Firebase.setAndroidContext(this);
+        Firebase partnersFirebase = new Firebase("https://gymcalculator-73017.firebaseio.com/partners_sites");
+        partnersFirebase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                PartnersUrl = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
     }
 
-    public void startVideoAd(View view) {
-        if(mRewardedVideoAd.isLoaded()) {
-            mRewardedVideoAd.show();
-        }
-    }
-
-    @Override
-    public void onRewardedVideoAdLoaded() {
-
-    }
-
-    @Override
-    public void onRewardedVideoAdOpened() {
-
-    }
-
-    @Override
-    public void onRewardedVideoStarted() {
-
-    }
-
-    @Override
-    public void onRewardedVideoAdClosed() {
-        loadRewardedVideoAd();
-    }
-
-    @Override
-    public void onRewarded(RewardItem rewardItem) {
-        Toast.makeText(this, "onRewarded! currency: " + rewardItem.getType() + "  amount: " +
-                rewardItem.getAmount(), Toast.LENGTH_SHORT).show();
-
-        progress1+=rewardItem.getAmount();
-        seekbar1.setProgress(progress1);
-        licz(isRound);
-    }
-
-    @Override
-    public void onRewardedVideoAdLeftApplication() {
-
-    }
-
-    @Override
-    public void onRewardedVideoAdFailedToLoad(int i) {
-
-    }
-
-    @Override
-    public void onRewardedVideoCompleted() {
-
-    }*/
 }

@@ -43,7 +43,6 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
-    private static int SPLASH_TIME_OUT = 200;
     private TextView RM1,RM2,RM3,RM4,RM5,RM6,RM7,RM8,RM9,RM10,RM11,RM12,RM15,textView1,textView2;
     private SeekBar seekbar1,seekbar2;
     private Button buttonPW, buttonMW;

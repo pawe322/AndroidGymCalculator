@@ -21,6 +21,19 @@
             </menu>
         </item>
 
+    <item android:title="@string/Info">
+        <menu>
+            <item
+                android:id="@+id/partners_sites"
+                android:icon="@drawable/ic_star_black_24dp"
+                android:title="@string/GymWallpapers" />
+            <item
+                android:id="@+id/privacy_policy"
+                android:icon="@drawable/ic_assignment_black_24dp"
+                android:title="@string/privacy_policy" />
+        </menu>
+    </item>
+
     <item android:title="@string/Communicate">
         <menu>
             <item
@@ -35,17 +48,6 @@
         </menu>
     </item>
 
-    <item android:title="@string/Info">
-        <menu>
-            <item
-                android:id="@+id/privacy_policy"
-                android:icon="@drawable/ic_assignment_black_24dp"
-                android:title="@string/privacy_policy" />
-            <item
-                android:id="@+id/partners_sites"
-                android:icon="@drawable/ic_star_black_24dp"
-                android:title="@string/partners_sites" />
-        </menu>
-    </item>
+
 
 </menu>
